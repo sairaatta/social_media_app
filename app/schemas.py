@@ -39,3 +39,27 @@ class PostResponse(BaseModel):
     content: str
     comments_allowed: bool
     created_at: datetime
+    
+
+class CommentCreate(BaseModel):
+    content: str = Field(min_length=1, max_length=5000)
+
+
+class CommentUpdate(BaseModel):
+    content: str = Field(min_length=1, max_length=5000)
+
+
+class CommentResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    post_id: uuid.UUID
+    user_id: uuid.UUID
+    content: str
+    created_at: datetime
+    updated_at: datetime
+    is_pinned: bool
+
+
+class CommentPermissionUpdate(BaseModel):
+    comments_allowed: bool

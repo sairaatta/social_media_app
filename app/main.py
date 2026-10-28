@@ -25,6 +25,8 @@ from app.admin import router as admin_router
 
 from app.posts import router as posts_router
 
+from app.comments import router as comments_router
+
 app = FastAPI(
     title="Social Media API",
     description="Social media backend using FastAPI and PostgreSQL",
@@ -34,6 +36,8 @@ app = FastAPI(
 app.include_router(admin_router)
 
 app.include_router(posts_router)
+
+app.include_router(comments_router)
 
 @app.get("/")
 def home():
